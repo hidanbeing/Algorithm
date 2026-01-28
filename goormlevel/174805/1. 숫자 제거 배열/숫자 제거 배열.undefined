@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+
+n, k = input().split()
+
+an=list(input().split())
+
+result=int(n)
+
+for s in an:
+	if k in s:
+		result-=1;
+	
+	
+print(result)
