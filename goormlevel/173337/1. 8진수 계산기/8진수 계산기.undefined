@@ -1,0 +1,20 @@
+n = int(input())
+vi = list(map(int, input().split()))
+
+s = sum(vi)
+
+# s 이하인 가장 큰 8의 거듭제곱 찾기
+k = 1
+while k * 8 <= s:
+    k *= 8
+
+# 8의 거듭제곱 단위로 분해
+result=0
+while k > 0:
+	p=s//k
+	result+=p
+	s %= k
+	k //= 8
+	result*=10
+
+print(result//10)
