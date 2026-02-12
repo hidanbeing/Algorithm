@@ -1,35 +1,25 @@
 class Solution {
-    
-    static int numLen;
-    static int[] numbersArr; 
-        
-    int answer = 0;   
-    
-    public int solution(int[] numbers, int target) {
-        numbersArr = numbers;
-        numLen = numbers.length;
-        
-        int value=0;
-        f(numbers[0], 0 , 0, target);
-        f(numbers[0]*(-1), 0 , 0, target);
-        
-        return answer;
-    }
-    
-    
-    public int f(int cur, int value, int count, int target){
-        int newValue = cur + value;
-        count+=1;
-        if (numLen == count){
-            if (target == newValue){
+    int answer = 0;
+
+    void dfs(int[] numbers, int idx, int sum, int target) {
+
+        // 모든 숫자를 다 썼을 때
+        if (idx == numbers.length) {
+            if (sum == target) {
                 answer++;
             }
-            return cur+value;
+            return;
         }
-        f(newValue, numbersArr[count] , count, target);
-        f(newValue, numbersArr[count]*(-1) , count, target);
 
-        return cur+value;
+        // + 선택
+        dfs(numbers, idx + 1, sum + numbers[idx], target);
 
+        // - 선택
+        dfs(numbers, idx + 1, sum - numbers[idx], target);
+    }
+
+    public int solution(int[] numbers, int target) {
+        dfs(numbers, 0, 0, target);
+        return answer;
     }
 }
